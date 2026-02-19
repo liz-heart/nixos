@@ -1,0 +1,41 @@
+{ config, pkgs, ... }:
+{
+ home.packages = with pkgs; [ swaybg ];
+
+ wayland.windowManager.sway = {
+ enable = true;
+ checkConfig = false;
+ config = rec {
+  modifier = "Mod4";
+  terminal = "alacritty";
+  output = {
+	"DP-2" = {
+	position = "0 0";
+	bg = "/home/munchnix/walls/sunflow.png fill";
+	};
+	"DP-1" = {
+	position = "2560 0";
+	bg = "/home/munchnix/walls/sunflow.png fill";
+	};
+#   	bg = "/home/munchnix/walls/2B.jpg fill";
+#    	bg = "/home/munchnix/walls/angel.jpg fill";
+#    	bg = "/home/munchnix/walls/frieren.png fill"; 
+    };
+   };
+ 
+ keybindings = {
+  "${modifier}+Alt=l" = "exec swaylock";
+ };
+
+ extraConfig = ''
+  for_window [app_id="Alacritty"] opacity 0.9
+ '';
+};
+}
+
+
+
+
+
+
+
