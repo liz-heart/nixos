@@ -3,7 +3,7 @@
 programs.bash = {
   enable = true;
   shellAliases = {
-
+   logout = "kill -9 -1";
    ll = "ls -la";
 
 

@@ -8,6 +8,8 @@
    prismlauncher
 
    browsh
+  
+   swaynotificationcenter   
 
    fastfetch
    waybar

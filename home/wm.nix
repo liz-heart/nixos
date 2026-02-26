@@ -23,11 +23,11 @@
     };
  
  keybindings = {
-  "${modifier}+Alt+l" = "exec swaylock";
+  "${modifier}+Alt+l" = "exec hyprlock";
   # all defaults explicitly written out
   "${modifier}+Return" = "exec alacritty";
   "${modifier}+Shift+q" = "kill";
-  "${modifier}+d" = "exec dmenu_run";
+  "${modifier}+d" = "exec rofi -show drun";
   "${modifier}+Shift+c" = "reload";
   # "${modifier}+Shift+e" = "exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'";
 

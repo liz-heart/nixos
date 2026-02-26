@@ -1,11 +1,15 @@
 { config, pkgs, ... } :
 {
  imports = [
+        ./hypr/hyprland.nix
+        ./hypr/hyprlock.nix
 	./wm.nix
+	./quickshell/qs.nix
+	./rofi.nix
 	./terminal.nix
 	./bash.nix
 	./packages.nix
-	./swaylock.nix
+#	./swaylock.nix
 	./shell.nix
 #	./waybar.nix
  ];
