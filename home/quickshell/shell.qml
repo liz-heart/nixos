@@ -379,7 +379,12 @@ ShellRoot {
     Process {
         id: appListProc
         command: ["bash", "-c",
-	    "for f in /usr/share/applications/*.desktop /run/current-system/sw/share/applications/*.desktop '" + root.homePath + "/.nix-profile/share/applications'/*.desktop '" + root.homePath + "/.local/share/applications'/*.desktop; do " +
+    "for f in /usr/share/applications/*.desktop " +
+    "/run/current-system/sw/share/applications/*.desktop " +
+    "/etc/profiles/per-user/$USER/share/applications/*.desktop " +
+    "/var/lib/flatpak/exports/share/applications/*.desktop " +
+    "$HOME/.nix-profile/share/applications/*.desktop " +
+    "$HOME/.local/share/applications/*.desktop; do " +
             "  [ -f \"$f\" ] || continue; " +
             "  grep -qi '^NoDisplay=true' \"$f\" && continue; " +
             "  grep -qi '^Hidden=true' \"$f\" && continue; " +
