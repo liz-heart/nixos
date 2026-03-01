@@ -10,9 +10,13 @@
    browsh
   
    swaynotificationcenter   
+   
 
    fastfetch
-   waybar
+ 
+   #Hyprland
+   swww
+   pywal
    # nixos.wiki/wiki/Sway
    grim
    slurp
@@ -20,8 +24,5 @@
    mako
 
  ];
-
-
-  programs.waybar.enable = true;  
 
 }

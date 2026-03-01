@@ -11,9 +11,13 @@ inputs = {
   url = "github:catppuccin/nix"; 
   inputs.nixpkgs.follows = "nixpkgs";
  };
+ quickshell = {
+  url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+  inputs.nixpkgs.follows = "nixpkgs";
+ };
 };
 
-outputs = { self, nixpkgs, home-manager, catppuccin , ... }: {
+outputs = { self, nixpkgs, home-manager, catppuccin , quickshell , ... }: {
  nixosConfigurations.my-nixos = nixpkgs.lib.nixosSystem {
   system = "x86_64-linux";
   modules = [
@@ -22,7 +26,7 @@ outputs = { self, nixpkgs, home-manager, catppuccin , ... }: {
     home-manager = {
      useGlobalPkgs = true;
      useUserPackages = true;
-     extraSpecialArgs = { inherit catppuccin; };
+     extraSpecialArgs = { inherit catppuccin quickshell; };
      users.munchnix = {
       imports = [
        catppuccin.homeManagerModules.catppuccin 

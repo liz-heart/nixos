@@ -1,4 +1,8 @@
 { config, pkgs, ... }:
+
+let 
+  walls = "/home/munchnix/walls/sunflow.png";
+in
 {
  home.packages = with pkgs; [ swaybg ];
 
@@ -11,11 +15,11 @@
   output = {
 	"DP-2" = {
 	position = "0 0";
-	bg = "/home/munchnix/walls/sunflow.png fill";
+	bg = "${walls} fill";
 	};
 	"DP-1" = {
 	position = "2560 0";
-	bg = "/home/munchnix/walls/sunflow.png fill";
+	bg = "${walls} fill";
 	};
 #   	bg = "/home/munchnix/walls/2B.jpg fill";
 #    	bg = "/home/munchnix/walls/angel.jpg fill";

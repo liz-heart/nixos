@@ -8,8 +8,9 @@ import Qt5Compat.GraphicalEffects
 
 PanelWindow {
     id: bar
+    screen: Quickshell.screens.find(s => s.name === "DP-1") ?? Quickshell.screens[0]
     visible: true
-    exclusionMode: ExclusionMode.Exclusive
+    WlrLayershell.exclusionMode: ExclusionMode.Exclusive
     WlrLayershell.layer: WlrLayer.Top
     WlrLayershell.namespace: "quickshell"
     anchors { top: true; left: true; right: true }
@@ -397,7 +398,7 @@ PanelWindow {
 
                     Text {
                         anchors.centerIn: parent
-                        text: "󰣇"
+                        text: "󱄅"
                         color: root.walColor1
                         font.pixelSize: 16
                         font.family: "JetBrainsMono Nerd Font"
@@ -491,17 +492,10 @@ PanelWindow {
                             antialiasing: true
 
                             Behavior on x {
-                                NumberAnimation {
-                                    duration: 300
-                                    easing.type: Easing.OutCubic
-                                }
+                                NumberAnimation { duration: 300; easing.type: Easing.OutCubic }
                             }
-
                             Behavior on width {
-                                NumberAnimation {
-                                    duration: 250
-                                    easing.type: Easing.OutCubic
-                                }
+                                NumberAnimation { duration: 250; easing.type: Easing.OutCubic }
                             }
                         }
 
@@ -552,7 +546,6 @@ PanelWindow {
                                         font.pixelSize: 10
                                         font.bold: true
                                         font.family: "JetBrainsMono Nerd Font"
-
                                         Behavior on color { ColorAnimation { duration: 200; easing.type: Easing.OutCubic } }
                                     }
 
@@ -618,7 +611,6 @@ PanelWindow {
 
                                 Repeater {
                                     model: 12
-
                                     Rectangle {
                                         width: 2.5
                                         height: Math.max(3, bar.cavaValues[index] * 14)
@@ -626,7 +618,6 @@ PanelWindow {
                                         anchors.verticalCenter: parent.verticalCenter
                                         color: root.walColor5
                                         antialiasing: true
-
                                         Behavior on height { NumberAnimation { duration: 60; easing.type: Easing.OutQuad } }
                                     }
                                 }
@@ -757,7 +748,6 @@ PanelWindow {
                                     return root.walColor13
                                 }
                                 antialiasing: true
-
                                 Behavior on border.color { ColorAnimation { duration: 400; easing.type: Easing.OutCubic } }
 
                                 Rectangle {
@@ -783,7 +773,6 @@ PanelWindow {
                                         return root.walColor13
                                     }
                                     antialiasing: true
-
                                     Behavior on width { NumberAnimation { duration: bar.batteryCharging ? 50 : 600; easing.type: Easing.OutCubic } }
                                     Behavior on color { ColorAnimation { duration: 400; easing.type: Easing.OutCubic } }
                                 }
@@ -799,7 +788,6 @@ PanelWindow {
                                 color: batteryFill.color
                                 visible: bar.batteryPercent < 100
                                 antialiasing: true
-
                                 Behavior on color { ColorAnimation { duration: 400; easing.type: Easing.OutCubic } }
                             }
 
@@ -830,7 +818,6 @@ PanelWindow {
                             font.pixelSize: 11
                             font.bold: true
                             font.family: "JetBrainsMono Nerd Font"
-
                             Behavior on color { ColorAnimation { duration: 400; easing.type: Easing.OutCubic } }
                         }
                     }
@@ -859,7 +846,6 @@ PanelWindow {
                         font.pixelSize: 11
                         font.bold: true
                         font.family: "JetBrainsMono Nerd Font"
-
                         Behavior on color { ColorAnimation { duration: 200; easing.type: Easing.OutCubic } }
                     }
                 }
@@ -908,7 +894,6 @@ PanelWindow {
                             color: bar.wifiConnected ? root.walColor2 : root.walColor8
                             font.pixelSize: 14
                             font.family: "JetBrainsMono Nerd Font"
-
                             Behavior on color { ColorAnimation { duration: 300; easing.type: Easing.OutCubic } }
                         }
 
@@ -918,7 +903,6 @@ PanelWindow {
                             color: bar.btConnected ? root.walColor5 : root.walColor8
                             font.pixelSize: 13
                             font.family: "JetBrainsMono Nerd Font"
-
                             Behavior on color { ColorAnimation { duration: 300; easing.type: Easing.OutCubic } }
                         }
                     }

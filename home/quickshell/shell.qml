@@ -12,7 +12,7 @@ ShellRoot {
 
     property string configPath: Quickshell.env("HOME") + "/.config/quickshell"
     property string homePath: Quickshell.env("HOME")
-    property string wallpaperPath: homePath + "/wallpapers"
+    property string wallpaperPath: homePath + "/walls"
     property string cachePath: homePath + "/.cache"
     property string statePath: configPath + "/state"
 
@@ -231,7 +231,7 @@ ShellRoot {
         root.walApplying = true
         applyWallProc.command = ["bash", "-c",
             "ln -sf '" + wallpaper.path + "' '" + root.wallpaperPath + "/current' && " +
-            "swww img '" + wallpaper.path + "' --transition-type any --transition-duration 2 & " +
+            "swww img '" + wallpaper.path + "' --transition-type random --transition-duration 2 & " +
             "wal -i '" + wallpaper.path + "' -n -q && " +
             "sleep 0.3"
         ]
@@ -379,7 +379,7 @@ ShellRoot {
     Process {
         id: appListProc
         command: ["bash", "-c",
-            "for f in /usr/share/applications/*.desktop '" + root.homePath + "/.local/share/applications'/*.desktop; do " +
+	    "for f in /usr/share/applications/*.desktop /run/current-system/sw/share/applications/*.desktop '" + root.homePath + "/.nix-profile/share/applications'/*.desktop '" + root.homePath + "/.local/share/applications'/*.desktop; do " +
             "  [ -f \"$f\" ] || continue; " +
             "  grep -qi '^NoDisplay=true' \"$f\" && continue; " +
             "  grep -qi '^Hidden=true' \"$f\" && continue; " +

@@ -5,6 +5,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
+import Quickshell.Hyprland
 
 PanelWindow {
     id: dashboard
@@ -24,8 +25,8 @@ PanelWindow {
     property int batVal: 100
     property int volVal: 50
     property int brightVal: 100
-    property string configPath: Quickshell.env("HOME") + "/.config/quickshell"
-
+property string configPath: Quickshell.env("HOME") + "/.config/quickshell"
+property string pfpPath: Quickshell.env("HOME") + "/userpics"
     Item {
         anchors.fill: parent
         focus: root.dashboardVisible
@@ -92,7 +93,7 @@ PanelWindow {
                                     anchors.centerIn: parent
                                     width: 68
                                     height: 68
-                                    source: "file://" + dashboard.configPath + "/assets/pfps/pfp.jpg"
+				    source: "file://" + dashboard.pfpPath + "/pfp.png"
                                     fillMode: Image.PreserveAspectCrop
                                     smooth: true
                                     cache: false
@@ -103,7 +104,7 @@ PanelWindow {
                                     function reload() {
                                         reloadTrigger++
                                         source = ""
-                                        source = "file://" + dashboard.configPath + "/assets/pfps/pfp.jpg?" + reloadTrigger
+				        source = "file://" + dashboard.pfpPath + "/pfp.png?" + reloadTrigger
                                     }
                                 }
                                 Rectangle {
@@ -260,7 +261,7 @@ PanelWindow {
                     }
                     Process {
                         id: pfpListProc
-                        command: ["bash", "-c", "find " + dashboard.configPath + "/assets/pfps -maxdepth 1 -type f \\( -iname '*.jpg' -o -iname '*.png' -o -iname '*.gif' \\) ! -name 'pfp.jpg' | sort"]
+                        command: ["bash", "-c", "find " + dashboard.pfpPath + " -maxdepth 1 -type f \\( -iname '*.jpg' -o -iname '*.png' -o -iname '*.gif' \\) ! -name 'pfp.png' | sort"]
                         stdout: SplitParser {
                             onRead: data => {
                                 var file = data.trim()
@@ -275,7 +276,7 @@ PanelWindow {
                     Process {
                         id: setPfpProc
                         property string selFile: ""
-                        command: ["bash", "-c", "cp '" + selFile + "' " + dashboard.configPath + "/assets/pfps/pfp.jpg"]
+			command: ["bash", "-c", "cp '" + selFile + "' " + dashboard.pfpPath + "/pfp.png"]
                         onExited: {
                             pfpImage.reload()
                             profileSection.pfpPickerOpen = false

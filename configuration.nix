@@ -38,7 +38,9 @@
   
   programs.niri.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  programs.hyprland.enable = true;
+ 
+ # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.munchnix = {
    isNormalUser = true;
    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
@@ -59,6 +61,7 @@
    tree
    gedit
    bat
+
   ];
 
   fonts.packages = with pkgs; [
