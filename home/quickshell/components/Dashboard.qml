@@ -9,6 +9,7 @@ import Quickshell.Hyprland
 
 PanelWindow {
     id: dashboard
+    WlrLayershell.layer: WlrLayer.Overlay
     visible: true
     exclusionMode: ExclusionMode.Ignore
     anchors { top: true; bottom: true; right: true }

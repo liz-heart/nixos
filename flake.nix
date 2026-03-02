@@ -29,7 +29,7 @@ outputs = { self, nixpkgs, home-manager, catppuccin , quickshell , ... }: {
      extraSpecialArgs = { inherit catppuccin quickshell; };
      users.munchnix = {
       imports = [
-       catppuccin.homeManagerModules.catppuccin 
+       catppuccin.homeModules.catppuccin 
        ./home/default.nix
 	 ];
 	};

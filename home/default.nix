@@ -24,6 +24,4 @@
 
  programs.neovim.enable = true;
 
- nixpkgs.config.allowUnfree = true;
-
 }

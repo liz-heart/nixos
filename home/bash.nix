@@ -17,8 +17,9 @@ programs.bash = {
    nrs = "sudo nixos-rebuild switch";
 
 
-  xiv = "flatpak run dev.goats.xivlauncher";
+   xiv = "flatpak run dev.goats.xivlauncher";
 
+ #  xiv = "DXVK_CONFIG='dxgi.syncInterval=0' XIVLauncher.Core ";
   };
  };
 }

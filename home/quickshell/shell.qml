@@ -556,7 +556,20 @@ ShellRoot {
 
     Process {
         id: btScanProc
-        command: ["bash", "-c", "echo -e 'scan on\\nquit' | bluetoothctl 2>/dev/null; sleep 5; echo -e 'scan off\\nquit' | bluetoothctl 2>/dev/null; sleep 1; echo -e 'devices\\nquit' | bluetoothctl 2>/dev/null | grep '^Device' | while read -r line; do mac=$(echo \"$line\" | awk '{print $2}'); name=$(echo \"$line\" | cut -d' ' -f3-); info=$(echo -e \"info $mac\\nquit\" | bluetoothctl 2>/dev/null); paired=$(echo \"$info\" | grep -oP 'Paired: \\K\\w+'); if [ \"$paired\" != \"yes\" ] && [ -n \"$name\" ] && [ \"$name\" != \"$mac\" ]; then echo \"${mac}|${name}\"; fi; done"]
+command: ["bash", "-c",
+        "bluetoothctl scan on &" +
+        "SCAN_PID=$!;" +
+        "sleep 8;" +
+        "kill $SCAN_PID 2>/dev/null;" +
+        "bluetoothctl devices | grep '^Device' | while read -r line; do " +
+        "  mac=$(echo \"$line\" | awk '{print $2}');" +
+        "  name=$(echo \"$line\" | cut -d' ' -f3-);" +
+        "  paired=$(bluetoothctl info \"$mac\" | grep -oP 'Paired: \\K\\w+');" +
+        "  if [ \"$paired\" != 'yes' ] && [ -n \"$name\" ] && [ \"$name\" != \"$mac\" ]; then" +
+        "    echo \"${mac}|${name}\";" +
+        "  fi;" +
+        "done"
+    ]
         stdout: SplitParser {
             onRead: data => {
                 var line = data.trim()

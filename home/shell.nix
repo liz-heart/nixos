@@ -2,21 +2,23 @@
 {
 programs.git = {
   enable = true;
-  userName = "liz-heart";
-  userEmail = "dl@lojnik.net";
-  extraConfig = {
+  settings = {
+    user.Name = "liz-heart";
+    user.Email = "dl@lojnik.net";
     init.defaultBranch = "main";
     push.autoSetupRemote = true;
     pull.rebase = true;
     core.editor = "nvim";
     diff.colorMoved = "zebra";
   };
-  delta = {
+}; 
+programs.delta = {
     enable = true;
+    enableGitIntegration = true;
     options = {
       side-by-side = true;
       line-numbers = true;
     };
   };
-};
 }
+

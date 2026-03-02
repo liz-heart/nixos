@@ -7,8 +7,10 @@ import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 import Quickshell.Hyprland
 
+
 PanelWindow {
     id: launcherPanel
+    WlrLayershell.layer: WlrLayer.Overlay
     visible: true
     exclusionMode: ExclusionMode.Ignore
     anchors { top: true; bottom: true; left: true }

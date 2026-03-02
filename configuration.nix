@@ -62,12 +62,28 @@
    gedit
    bat
 
+   xivlauncher
   ];
 
   fonts.packages = with pkgs; [
    nerd-fonts.jetbrains-mono
   ];
 
+  hardware.bluetooth = {
+   enable = true;
+   powerOnBoot = true;
+  };
+
+  hardware.graphics = {
+   enable = true;
+   enable32Bit = true;
+  };
+  
+  environment.sessionVariables = {
+   AMD_VULKAN_ICD = "RADV";
+  };
+
+  services.blueman.enable = true;
 
   # List services that you want to enable:
 

@@ -11,9 +11,9 @@
   
    swaynotificationcenter   
    
-
+   bluez
    fastfetch
- 
+   gamescope
    #Hyprland
    swww
    pywal
