@@ -51,6 +51,16 @@
   programs.firefox.enable = true;
   
   programs.steam.enable = true;
+  
+  programs.nvf = {
+    enable = true;
+    settings = {
+      vim.theme.enable = true;
+      vim.theme.name = "gruvbox";
+      vim.theme.style = "dark";
+
+      vim.languages.nix.enable = true;
+    };
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
@@ -61,8 +71,7 @@
    tree
    gedit
    bat
-
-   xivlauncher
+   unzip
   ];
 
   fonts.packages = with pkgs; [

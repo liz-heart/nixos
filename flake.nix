@@ -3,6 +3,7 @@ description = "Nixos";
 
 inputs = {
  nixpkgs.url = "nixpkgs/nixos-25.11";
+ nvf.url = "github:notashelf/nvf";
  home-manager = {
   url = "github:nix-community/home-manager/release-25.11";
   inputs.nixpkgs.follows = "nixpkgs";
@@ -17,11 +18,12 @@ inputs = {
  };
 };
 
-outputs = { self, nixpkgs, home-manager, catppuccin , quickshell , ... }: {
+outputs = { self, nixpkgs, home-manager, catppuccin , quickshell , nvf , ... }: {
  nixosConfigurations.my-nixos = nixpkgs.lib.nixosSystem {
   system = "x86_64-linux";
   modules = [
    ./configuration.nix
+   nvf.nixosModules.default
    home-manager.nixosModules.home-manager {
     home-manager = {
      useGlobalPkgs = true;
