@@ -1,25 +1,23 @@
-{ config, pkgs, ... } :
+{ config, pkgs, ... }:
+
 {
-programs.alacritty = {
-  enable = true;
-  settings = {
-   window.opacity = 0.9;
-   window.blur = true;
-  font = {
-  normal = {
-    family = "JetBrainsMono Nerd Font";
-    style = "Regular";
+  programs.kitty = {
+    enable = true;
+    settings = {
+      # Window appearance
+      background_opacity = "0.5"; # must be string
+      background_blur = 1; # kitty uses an integer blur radius
+      # Font settings
+      font_family = "JetBrainsMono Nerd Font";
+      bold_font = "JetBrainsMono Nerd Font Bold";
+      italic_font = "JetBrainsMono Nerd Font Italic";
+      bold_italic_font = "JetBrainsMono Nerd Font Bold Italic";
+      font_size = 11.0;
+    };
+
+    extraConfig = ''
+      # Load current pywal colors so NEW kitty windows match the wallpaper
+      include ~/.cache/wal/colors-kitty.conf
+    '';
   };
-  bold = {
-    family = "JetBrainsMono Nerd Font";
-    style = "Bold";
-  };
-  italic = {
-    family = "JetBrainsMono Nerd Font";
-    style = "Italic";
-  };
-  size = 11.0;
-};
-  };
-  };
- }
+}

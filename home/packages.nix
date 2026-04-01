@@ -1,28 +1,37 @@
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
 
- home.packages = with pkgs; [
-   vesktop
-   ani-cli
-   prismlauncher
+  home.packages = with pkgs; [
+    vesktop
+    ani-cli
+    prismlauncher
 
-   browsh
-  
-   swaynotificationcenter   
-   
-   bluez
-   fastfetch
-   gamescope
-   #Hyprland
-   swww
-   pywal
-   # nixos.wiki/wiki/Sway
-   grim
-   slurp
-   wl-clipboard
-   mako
+    bottles
+    protonplus
+    protontricks
+    winetricks
+    wine
 
- ];
+    unrar
+    browsh
+
+    swaynotificationcenter
+
+    yazi
+
+    bluez
+    fastfetch
+    gamescope
+    #Hyprland
+    swww
+    pywal
+    # nixos.wiki/wiki/Sway
+    grim
+    slurp
+    wl-clipboard
+    mako
+
+  ];
 
 }

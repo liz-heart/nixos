@@ -6,29 +6,55 @@
     viAlias = true;
     vimAlias = true;
 
+    # ----------------------------------------------------------
     extraPackages = with pkgs; [
-      # LSP servers
+
+      # --- Treesitter CLI + compiler ---
+      tree-sitter
+      gcc
+
+      # --- LSP servers ---
       lua-language-server
       nil
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
       pyright
 
-      # Formatters
+      # --- Formatters ---
       stylua
       prettier
       black
       nixpkgs-fmt
 
-      # LazyVim / Telescope deps
-      ripgrep
-      fd
-      lazygit
-      tree-sitter
+      # --- Precompiled Treesitter grammars (NixOS magic!) ---
+      tree-sitter-grammars.tree-sitter-nix
+      tree-sitter-grammars.tree-sitter-json
+      tree-sitter-grammars.tree-sitter-lua
+      tree-sitter-grammars.tree-sitter-bash
+      tree-sitter-grammars.tree-sitter-python
+      tree-sitter-grammars.tree-sitter-markdown
 
-      # Clipboard (swap xclip for wl-clipboard if Wayland)
-      xclip
+      # --- Utility tools used by LazyVim ---
+      ripgrep # telescope live_grep
+      fd # telescope file search
+      lazygit # LazyGit UI
+      wl-clipboard # Wayland clipboard
+      fzf # fuzzy finder integration
+      trash-cli # safe deleting
+      unzip # required by LazyVim for plugin updates
     ];
+
+    # ----------------------------------------------------------
+    # Neovim runtime config
+    # ----------------------------------------------------------
+
+    extraConfig = ''
+      set clipboard+=unnamedplus
+
+      lua << EOF
+        -- Disable runtime Treesitter compilation on NixOS
+      EOF
+    '';
   };
 
   # Manage ~/.config/nvim declaratively via home-manager
@@ -64,6 +90,8 @@
           { import = "plugins" },
         },
         defaults = { lazy = true },
+
+        rocks = { enabled = false, hererocks = false, },
         install = { colorscheme = { "catppuccin", "tokyonight", "habamax" } },
         checker = { enabled = true },  -- auto-check for plugin updates
         performance = {

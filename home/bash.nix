@@ -18,7 +18,7 @@ programs.bash = {
 
 
    xiv = "flatpak run dev.goats.xivlauncher";
-
+   lutris = "flatpak run net.lutris.Lutris";
  #  xiv = "DXVK_CONFIG='dxgi.syncInterval=0' XIVLauncher.Core ";
   };
  };
