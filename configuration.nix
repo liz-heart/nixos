@@ -2,13 +2,18 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -26,70 +31,65 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   services.displayManager.ly.enable = true;
-  
+
   services.gnome.gnome-keyring.enable = true;
 
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
   security.polkit.enable = true;
   programs.sway = {
-   enable = true;
-   wrapperFeatures.gtk = true;
+    enable = true;
+    wrapperFeatures.gtk = true;
   };
-  
+
   programs.niri.enable = true;
 
   programs.hyprland.enable = true;
- 
- # Define a user account. Don't forget to set a password with ‘passwd’.
+
+  virtualisation.docker.enable = true;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.munchnix = {
-   isNormalUser = true;
-   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "docker"
+    ]; # Enable ‘sudo’ for the user.
   };
 
   services.flatpak.enable = true;
 
   programs.firefox.enable = true;
-  
-  programs.steam.enable = true;
-  
-  programs.nvf = {
-    enable = true;
-    settings = {
-      vim.theme.enable = true;
-      vim.theme.name = "gruvbox";
-      vim.theme.style = "dark";
 
-      vim.languages.nix.enable = true;
-    };
+  programs.steam.enable = true;
+
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-   neovim
-   wget
-   git
-   tree
-   gedit
-   bat
-   unzip
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    git
+    tree
+    gedit
+    bat
+    unzip
   ];
 
   fonts.packages = with pkgs; [
-   nerd-fonts.jetbrains-mono
+    nerd-fonts.jetbrains-mono
   ];
 
   hardware.bluetooth = {
-   enable = true;
-   powerOnBoot = true;
+    enable = true;
+    powerOnBoot = true;
   };
 
   hardware.graphics = {
-   enable = true;
-   enable32Bit = true;
+    enable = true;
+    enable32Bit = true;
   };
-  
+
   environment.sessionVariables = {
-   AMD_VULKAN_ICD = "RADV";
+    AMD_VULKAN_ICD = "RADV";
   };
 
   services.blueman.enable = true;
@@ -127,9 +127,11 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  nixpkgs.config.allowUnfree = true;  
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   system.stateVersion = "25.11"; # Did you read the comment?
 
 }
-

@@ -3,30 +3,35 @@
 {
 
   home.packages = with pkgs; [
+    # games & co
     vesktop
     ani-cli
     prismlauncher
 
+    # ide
+    jetbrains-toolbox
+    bruno
+    bruno-cli
+
+    # compabilty force
     bottles
     protonplus
     protontricks
     winetricks
     wine
 
+    # files
+    yazi
     unrar
     browsh
 
-    swaynotificationcenter
-
-    yazi
-
-    bluez
+    # wm & co
     fastfetch
+    bluez
+    swaynotificationcenter
     gamescope
-    #Hyprland
     swww
     pywal
-    # nixos.wiki/wiki/Sway
     grim
     slurp
     wl-clipboard

@@ -14,17 +14,11 @@
       # --- Docker ---
       ms-azuretools.vscode-docker
 
-      # --- React / React Native ---
-      dsznajder.es7-react-js-snippets
-      christian-kohler.path-intellisense
-
       # --- Angular ---
       angular.ng-template
 
-      # --- Laravel / PHP ---
+      # --- Laravel / PHP (packaged only) ---
       bmewburn.vscode-intelephense-client
-      onecentlin.laravel-blade
-      ryannaddy.laravel-artisan
 
       # --- C# / .NET ---
       ms-dotnettools.csharp
@@ -34,6 +28,7 @@
       eamodio.gitlens
       yzhang.markdown-all-in-one
       vscodevim.vim
+      christian-kohler.path-intellisense
     ];
   };
 }

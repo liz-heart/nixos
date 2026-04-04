@@ -14,6 +14,7 @@
     ./shell.nix
     ./nvim.nix
     ./yazi.nix
+    ./vscodium.nix
   ];
 
   home.username = "munchnix";
